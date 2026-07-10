@@ -1,9 +1,11 @@
 <?php
-$host = "localhost";
-$port = "5432";
-$dbname = "laboratorio_ufpel";
-$user = "postgres";
-$password = "88445678";
+require_once __DIR__ . "/env.php";
+
+$host = getenv("DB_HOST");
+$port = getenv("DB_PORT");
+$dbname = getenv("DB_NAME");
+$user = getenv("DB_USER");
+$password = getenv("DB_PASSWORD");
 
 try {
     $pdo = new PDO(
@@ -15,6 +17,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
-    die("Erro na conexão: " . $e->getMessage());
+    error_log("Erro na conexão: " . $e->getMessage());
+    die("Erro ao conectar ao banco de dados.");
 }
 ?>

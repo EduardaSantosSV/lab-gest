@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
@@ -10,6 +11,8 @@ if (!isset($_SESSION['id_usuario'])) {
 if ($_SESSION['tipo_usuario'] != 'tecnico') {
     die("Acesso negado.");
 }
+
+csrf_verificar();
 
 $id_solicitacao = $_POST['id_solicitacao'] ?? null;
 $status = $_POST['status'] ?? null;

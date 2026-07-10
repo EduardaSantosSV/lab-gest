@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
@@ -78,11 +79,13 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <td>
                         <?php if ($chamado['status'] == 'aberto'): ?>
-                            <a class="btn-remover"
-                               href="remover_chamado.php?id=<?= $chamado['id_solicitacao'] ?>"
-                               onclick="return confirm('Deseja apagar este chamado?')">
-                               Apagar
-                            </a>
+                            <form action="remover_chamado.php" method="POST"
+                                  class="form-remover"
+                                  onsubmit="return confirm('Deseja apagar este chamado?')">
+                                <?= csrf_input() ?>
+                                <input type="hidden" name="id" value="<?= $chamado['id_solicitacao'] ?>">
+                                <button type="submit" class="btn-remover">Apagar</button>
+                            </form>
                         <?php else: ?>
                             -
                         <?php endif; ?>

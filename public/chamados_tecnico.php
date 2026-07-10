@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
@@ -107,6 +108,7 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <td>
                             <form action="atualizar_status.php" method="POST">
+                                <?= csrf_input() ?>
                                 <input type="hidden" name="id_solicitacao" value="<?= $chamado['id_solicitacao'] ?>">
 
                                 <select name="status" required>

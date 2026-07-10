@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 
 if (!isset($_SESSION['id_usuario'])) {
@@ -36,6 +37,7 @@ $tecnicos = $pdo->query("
     <h1>Abrir chamado</h1>
 
     <form action="salvar_chamado.php" method="POST">
+        <?= csrf_input() ?>
 
         <label>Equipamento</label>
         <select name="id_equipamento" required>

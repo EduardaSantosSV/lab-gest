@@ -1,11 +1,14 @@
 <?php
 session_start();
-require_once "conexao.php";
+require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit;
 }
+
+csrf_verificar();
 
 $sql = "INSERT INTO solicitacao (
             descricao,

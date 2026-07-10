@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once __DIR__ . "/../includes/csrf.php";
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,13 +17,7 @@
     <p>Sistema de Gestão de Laboratórios</p>
 
     <form action="autenticar.php" method="POST">
-
-        <label>Perfil de acesso</label>
-        <select name="tipo_usuario" required>
-            <option value="aluno">Aluno</option>
-            <option value="professor">Professor</option>
-            <option value="tecnico">Técnico de TI</option>
-        </select>
+        <?= csrf_input() ?>
 
         <label>E-mail</label>
         <input type="email" name="email" placeholder="seu@email.edu.br" required>
