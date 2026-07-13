@@ -20,4 +20,16 @@ try {
     error_log("Erro na conexão: " . $e->getMessage());
     die("Erro ao conectar ao banco de dados.");
 }
+
+function db_execute(PDO $pdo, string $sql, array $params = []): PDOStatement
+{
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
+    } catch (PDOException $e) {
+        error_log("Erro na consulta: " . $e->getMessage());
+        die("Ocorreu um erro ao processar sua solicitação. Tente novamente.");
+    }
+}
 ?>
