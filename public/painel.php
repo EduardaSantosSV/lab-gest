@@ -86,6 +86,40 @@ $tipo = $_SESSION['tipo_usuario'];
                 <h3>Associar aluno à turma</h3>
                 <p>Vincular um aluno a uma turma existente.</p>
             </a>
+
+            <a href="associar_lab_turma.php" class="card">
+                <h3>Associar turma a laboratório</h3>
+                <p>Registrar laboratórios utilizados por uma turma.</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Consultas</h2>
+
+        <div class="cards">
+            <a href="consultar_equipamentos.php" class="card">
+                <h3>Equipamentos por laboratório</h3>
+                <p>Listar equipamentos agrupados por laboratório.</p>
+            </a>
+
+            <a href="consultar_turmas.php" class="card">
+                <h3>Turmas, alunos e labs</h3>
+                <p>Ver alunos e laboratórios de cada turma.</p>
+            </a>
+
+            <a href="consultar_manutencao.php" class="card">
+                <h3>Histórico de manutenção</h3>
+                <p>Consultar manutenções de um equipamento.</p>
+            </a>
+
+            <a href="consultar_chamados.php" class="card">
+                <h3>Todos os chamados</h3>
+                <p>Visão geral das solicitações registradas.</p>
+            </a>
+
+            <a href="consultar_chaves.php" class="card">
+                <h3>Status das chaves</h3>
+                <p>Ver todas as retiradas e devoluções.</p>
+            </a>
         </div>
     <?php endif; ?>
 

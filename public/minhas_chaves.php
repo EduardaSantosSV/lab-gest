@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../includes/conexao.php";
+require_once __DIR__ . "/../includes/csrf.php";
 
 /*
     Verifica se está logado
@@ -89,6 +90,10 @@ $chaves = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <strong><?= htmlspecialchars($siape) ?></strong>
     </p>
 
+    <?php if (isset($_GET['devolvida'])): ?>
+        <p class="sucesso">Chave devolvida com sucesso.</p>
+    <?php endif; ?>
+
     <?php if (count($chaves) == 0): ?>
 
         <p>Nenhuma chave retirada ou agendada ainda.</p>
@@ -105,6 +110,7 @@ $chaves = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>Data Devolução</th>
                     <th>Hora Devolução</th>
                     <th>Status</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
 
@@ -132,6 +138,20 @@ $chaves = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </td>
 
                         <td><?= htmlspecialchars($chave['status_chave']) ?></td>
+
+                        <td>
+                            <?php if (in_array($chave['status_chave'], ['retirada', 'atrasada'], true)): ?>
+                                <form action="devolver_chave.php" method="POST"
+                                      class="form-remover"
+                                      onsubmit="return confirm('Confirmar devolução desta chave?')">
+                                    <?= csrf_input() ?>
+                                    <input type="hidden" name="id_agenda" value="<?= htmlspecialchars($chave['id_agenda']) ?>">
+                                    <button type="submit" class="btn-acao">Devolver</button>
+                                </form>
+                            <?php else: ?>
+                                -
+                            <?php endif; ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
