@@ -119,6 +119,16 @@ button {
     border-radius: 6px;
 }
 
+.btn-acao {
+    width: auto;
+    margin-top: 0;
+    padding: 6px 12px;
+    background: #050014;
+    font-weight: normal;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
 .sucesso {
     background: #dcfce7;
     color: #15803d;
