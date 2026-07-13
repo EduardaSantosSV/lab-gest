@@ -146,3 +146,51 @@ button {
     font-weight: bold;
     margin-top: 18px;
 }
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+thead th {
+    text-align: left;
+    padding: 11px 14px;
+    background: #f4f4f6;
+    color: #6b6878;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    border-bottom: 2px solid #e6e6ec;
+}
+
+tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #ececf1;
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background: #f7f7f9;
+}
+
+tbody tr:hover {
+    background: #f0eff3;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estado vazio (listas sem itens) */
+.empty-state {
+    margin-top: 18px;
+    padding: 22px;
+    text-align: center;
+    color: #6b6878;
+    background: #faf9fb;
+    border: 1px dashed #d9d7e0;
+    border-radius: 12px;
+}

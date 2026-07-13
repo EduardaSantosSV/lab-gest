@@ -43,7 +43,7 @@ foreach ($equipamentos as $eq) {
     <h1>Equipamentos por laboratório</h1>
 
     <?php if (count($laboratorios) == 0): ?>
-        <p>Nenhum laboratório cadastrado.</p>
+        <p class="empty-state">Nenhum laboratório cadastrado.</p>
     <?php else: ?>
         <?php foreach ($laboratorios as $lab): ?>
             <h2 class="section-title">
@@ -56,7 +56,7 @@ foreach ($equipamentos as $eq) {
             <?php $lista = $por_lab[$lab['id_laboratorio']] ?? []; ?>
 
             <?php if (count($lista) == 0): ?>
-                <p>Nenhum equipamento neste laboratório.</p>
+                <p class="empty-state">Nenhum equipamento neste laboratório.</p>
             <?php else: ?>
                 <table>
                     <thead>

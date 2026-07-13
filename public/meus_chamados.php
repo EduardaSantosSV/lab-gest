@@ -51,6 +51,10 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <h1>Meus chamados</h1>
 
+    <?php if (count($chamados) == 0): ?>
+        <p class="empty-state">Você ainda não abriu nenhum chamado.</p>
+    <?php else: ?>
+
     <table>
         <thead>
             <tr>
@@ -93,6 +97,8 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <?php endif; ?>
 
     <br>
     <a href="painel.php">Voltar</a>

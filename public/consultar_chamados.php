@@ -85,7 +85,7 @@ if ($filtro !== '' && in_array($filtro, $status_filtros, true)) {
     <br>
 
     <?php if (count($chamados) == 0): ?>
-        <p>Nenhum chamado encontrado.</p>
+        <p class="empty-state">Nenhum chamado encontrado para este filtro.</p>
     <?php else: ?>
         <table>
             <thead>

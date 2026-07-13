@@ -96,7 +96,7 @@ $chaves = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php if (count($chaves) == 0): ?>
 
-        <p>Nenhuma chave retirada ou agendada ainda.</p>
+        <p class="empty-state">Nenhuma chave retirada ou agendada ainda.</p>
 
     <?php else: ?>
 

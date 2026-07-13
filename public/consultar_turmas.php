@@ -58,7 +58,7 @@ foreach ($labs as $l) {
     <h1>Turmas, alunos e laboratórios</h1>
 
     <?php if (count($turmas) == 0): ?>
-        <p>Nenhuma turma cadastrada.</p>
+        <p class="empty-state">Nenhuma turma cadastrada.</p>
     <?php else: ?>
         <?php foreach ($turmas as $turma): ?>
             <h2 class="section-title">
@@ -86,7 +86,7 @@ foreach ($labs as $l) {
             <?php $al = $alunos_por_turma[$turma['id_turma']] ?? []; ?>
 
             <?php if (count($al) == 0): ?>
-                <p>Nenhum aluno associado a esta turma.</p>
+                <p class="empty-state">Nenhum aluno associado a esta turma.</p>
             <?php else: ?>
                 <table>
                     <thead>

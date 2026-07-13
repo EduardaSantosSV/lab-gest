@@ -70,7 +70,7 @@ if ($filtro !== '' && in_array($filtro, $status_filtros, true)) {
     <br>
 
     <?php if (count($chaves) == 0): ?>
-        <p>Nenhum registro de chave encontrado.</p>
+        <p class="empty-state">Nenhum registro de chave encontrado para este filtro.</p>
     <?php else: ?>
         <table>
             <thead>

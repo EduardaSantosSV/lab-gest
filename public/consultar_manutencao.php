@@ -84,7 +84,7 @@ if ($id_equipamento !== false) {
         </h2>
 
         <?php if (count($historico) == 0): ?>
-            <p>Nenhuma solicitação de manutenção registrada para este equipamento.</p>
+            <p class="empty-state">Nenhuma solicitação de manutenção registrada para este equipamento.</p>
         <?php else: ?>
             <table>
                 <thead>

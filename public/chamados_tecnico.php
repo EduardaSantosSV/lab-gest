@@ -73,7 +73,7 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1>Chamados atribuídos a mim</h1>
 
     <?php if (count($chamados) == 0): ?>
-        <p>Nenhum chamado atribuído a você.</p>
+        <p class="empty-state">Nenhum chamado atribuído a você.</p>
     <?php else: ?>
 
         <table>
