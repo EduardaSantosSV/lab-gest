@@ -30,8 +30,8 @@ O sistema tem três perfis (`tipo_usuario` na tabela `usuario`), definidos no ba
 | Perfil | Pode |
 |---|---|
 | `aluno` | Abrir e ver seus próprios chamados |
-| `professor` | Abrir/ver chamados, agendar laboratório e ver suas chaves retiradas |
-| `tecnico` | Ver e atualizar status dos chamados atribuídos a ele |
+| `professor` | Abrir/ver chamados, agendar laboratório, ver suas chaves retiradas e registrar a devolução |
+| `tecnico` | Ver e atualizar status dos chamados atribuídos; cadastrar laboratórios, equipamentos, turmas e usuários; associar alunos e turmas a laboratórios; e acessar as consultas gerais |
 
 ## Banco de dados
 
