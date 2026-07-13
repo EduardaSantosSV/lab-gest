@@ -35,7 +35,7 @@ O sistema tem três perfis (`tipo_usuario` na tabela `usuario`), definidos no ba
 
 ## Banco de dados
 
-Schema principal (`sql/laboratorio_ufpel.sql`): `usuario`, `professor`, `aluno`, `tecnico_ti`, `laboratorio`, `equipamentos`, `solicitacao`, `realiza_manutencao`, `agenda_labs_chave`, `turma`, `ministra`, `faz`, `pertence`, `utiliza`.
+Schema principal (`sql/laboratorio_ufpel.sql`): `usuario`, `professor`, `aluno`, `tecnico_ti`, `laboratorio`, `equipamentos`, `solicitacao`, `agenda_labs_chave`, `turma`, `ministra`, `pertence`, `utiliza`.
 
 O arquivo já inclui dados de exemplo (20 usuários — 5 professores, 5 técnicos, 10 alunos) com senhas em hash, prontos para teste local.
 
