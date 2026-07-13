@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict ElxDcYaVnvVTv2c5T1TGPUI7VByvN0OYdkaGgTxASA3OM2Ht9dfUn5Lu0Sad1Ff
+\restrict kblvnDLqLKovr0Ws0EgRuCIzSEOE0kz3qFbEcVKSwMhVEe1WirkNPmfESYbJeFC
 
 -- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
@@ -180,16 +180,6 @@ ALTER SEQUENCE public.equipamentos_id_equipamento_seq OWNED BY public.equipament
 
 
 --
--- Name: faz; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.faz (
-    matricula_aluno character(10) NOT NULL,
-    id_turma integer NOT NULL
-);
-
-
---
 -- Name: laboratorio; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -236,8 +226,8 @@ CREATE TABLE public.ministra (
 --
 
 CREATE TABLE public.pertence (
-    id_equipamento integer NOT NULL,
-    id_laboratorio integer NOT NULL
+    matricula_aluno character(10) NOT NULL,
+    id_turma integer NOT NULL
 );
 
 
@@ -251,16 +241,6 @@ CREATE TABLE public.professor (
     departamento character varying(100) NOT NULL,
     id_usuario integer,
     CONSTRAINT chk_siape_6_numeros CHECK ((siape ~ '^[0-9]{6}$'::text))
-);
-
-
---
--- Name: realiza_manutencao; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.realiza_manutencao (
-    id_solicitacao integer NOT NULL,
-    id_equipamento integer NOT NULL
 );
 
 
@@ -502,29 +482,6 @@ COPY public.equipamentos (id_equipamento, nome, tipo, status, descricao, id_labo
 
 
 --
--- Data for Name: faz; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.faz (matricula_aluno, id_turma) FROM stdin;
-2024000001	1
-2024000002	1
-2024000003	2
-2024000004	3
-2024000005	4
-2024000006	5
-2024000007	6
-2024000008	7
-2024000009	8
-2024000010	9
-2024000001	10
-2024000002	3
-2024000005	6
-2024000007	8
-2024000009	10
-\.
-
-
---
 -- Data for Name: laboratorio; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -574,7 +531,22 @@ COPY public.ministra (siape_professor, id_turma) FROM stdin;
 -- Data for Name: pertence; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.pertence (id_equipamento, id_laboratorio) FROM stdin;
+COPY public.pertence (matricula_aluno, id_turma) FROM stdin;
+2024000001	1
+2024000002	1
+2024000003	2
+2024000004	3
+2024000005	4
+2024000006	5
+2024000007	6
+2024000008	7
+2024000009	8
+2024000010	9
+2024000001	10
+2024000002	3
+2024000005	6
+2024000007	8
+2024000009	10
 \.
 
 
@@ -593,29 +565,6 @@ COPY public.professor (siape, curso, departamento, id_usuario) FROM stdin;
 345678	Sistemas de Informação	Departamento de Computação	3
 456789	Engenharia de Software	Departamento de Engenharia	4
 567890	Ciência da Computação	Departamento de Computação	5
-\.
-
-
---
--- Data for Name: realiza_manutencao; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.realiza_manutencao (id_solicitacao, id_equipamento) FROM stdin;
-1	1
-2	6
-3	3
-4	8
-5	5
-6	12
-7	13
-8	10
-9	11
-10	14
-11	7
-12	15
-13	2
-14	9
-15	4
 \.
 
 
@@ -765,7 +714,7 @@ SELECT pg_catalog.setval('public.laboratorio_id_laboratorio_seq', 20, true);
 -- Name: solicitacao_id_solicitacao_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.solicitacao_id_solicitacao_seq', 17, true);
+SELECT pg_catalog.setval('public.solicitacao_id_solicitacao_seq', 19, true);
 
 
 --
@@ -807,14 +756,6 @@ ALTER TABLE ONLY public.equipamentos
 
 
 --
--- Name: faz faz_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.faz
-    ADD CONSTRAINT faz_pkey PRIMARY KEY (matricula_aluno, id_turma);
-
-
---
 -- Name: laboratorio laboratorio_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -835,7 +776,7 @@ ALTER TABLE ONLY public.ministra
 --
 
 ALTER TABLE ONLY public.pertence
-    ADD CONSTRAINT pertence_pkey PRIMARY KEY (id_equipamento, id_laboratorio);
+    ADD CONSTRAINT pertence_pkey PRIMARY KEY (matricula_aluno, id_turma);
 
 
 --
@@ -844,14 +785,6 @@ ALTER TABLE ONLY public.pertence
 
 ALTER TABLE ONLY public.professor
     ADD CONSTRAINT professor_pkey PRIMARY KEY (siape);
-
-
---
--- Name: realiza_manutencao realiza_manutencao_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.realiza_manutencao
-    ADD CONSTRAINT realiza_manutencao_pkey PRIMARY KEY (id_solicitacao, id_equipamento);
 
 
 --
@@ -971,22 +904,6 @@ ALTER TABLE ONLY public.equipamentos
 
 
 --
--- Name: faz fk_faz_aluno; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.faz
-    ADD CONSTRAINT fk_faz_aluno FOREIGN KEY (matricula_aluno) REFERENCES public.aluno(matricula);
-
-
---
--- Name: faz fk_faz_turma; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.faz
-    ADD CONSTRAINT fk_faz_turma FOREIGN KEY (id_turma) REFERENCES public.turma(id_turma);
-
-
---
 -- Name: ministra fk_ministra_professor; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1003,19 +920,19 @@ ALTER TABLE ONLY public.ministra
 
 
 --
--- Name: pertence fk_pertence_equipamento; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: pertence fk_pertence_aluno; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.pertence
-    ADD CONSTRAINT fk_pertence_equipamento FOREIGN KEY (id_equipamento) REFERENCES public.equipamentos(id_equipamento);
+    ADD CONSTRAINT fk_pertence_aluno FOREIGN KEY (matricula_aluno) REFERENCES public.aluno(matricula);
 
 
 --
--- Name: pertence fk_pertence_laboratorio; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: pertence fk_pertence_turma; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.pertence
-    ADD CONSTRAINT fk_pertence_laboratorio FOREIGN KEY (id_laboratorio) REFERENCES public.laboratorio(id_laboratorio);
+    ADD CONSTRAINT fk_pertence_turma FOREIGN KEY (id_turma) REFERENCES public.turma(id_turma);
 
 
 --
@@ -1024,14 +941,6 @@ ALTER TABLE ONLY public.pertence
 
 ALTER TABLE ONLY public.professor
     ADD CONSTRAINT fk_professor_usuario FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_usuario);
-
-
---
--- Name: realiza_manutencao fk_realiza_manutencao_equipamento; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.realiza_manutencao
-    ADD CONSTRAINT fk_realiza_manutencao_equipamento FOREIGN KEY (id_equipamento) REFERENCES public.equipamentos(id_equipamento);
 
 
 --
@@ -1094,5 +1003,5 @@ ALTER TABLE ONLY public.utiliza
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ElxDcYaVnvVTv2c5T1TGPUI7VByvN0OYdkaGgTxASA3OM2Ht9dfUn5Lu0Sad1Ff
+\unrestrict kblvnDLqLKovr0Ws0EgRuCIzSEOE0kz3qFbEcVKSwMhVEe1WirkNPmfESYbJeFC
 
