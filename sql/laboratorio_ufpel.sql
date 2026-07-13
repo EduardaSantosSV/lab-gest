@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict kblvnDLqLKovr0Ws0EgRuCIzSEOE0kz3qFbEcVKSwMhVEe1WirkNPmfESYbJeFC
+\restrict KiUClESNLQzFn3jafie6xsbZlpurbIAPE9asMtxhNQh0rhoIU73YcNksm9v8fUV
 
 -- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
@@ -365,7 +365,6 @@ ALTER SEQUENCE public.usuario_id_usuario_seq OWNED BY public.usuario.id_usuario;
 
 CREATE TABLE public.utiliza (
     id_turma integer NOT NULL,
-    id_equipamento integer NOT NULL,
     id_laboratorio integer NOT NULL
 );
 
@@ -670,22 +669,20 @@ COPY public.usuario (id_usuario, nome, email, tipo_usuario, senha) FROM stdin;
 -- Data for Name: utiliza; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.utiliza (id_turma, id_equipamento, id_laboratorio) FROM stdin;
-1	1	1
-1	2	1
-2	3	2
-3	6	3
-4	5	3
-5	10	5
-6	11	6
-7	7	4
-8	12	6
-9	14	8
-10	15	9
-2	4	2
-3	8	4
-6	9	5
-8	13	7
+COPY public.utiliza (id_turma, id_laboratorio) FROM stdin;
+1	1
+2	2
+3	3
+4	3
+5	5
+6	6
+7	4
+8	6
+9	8
+10	9
+3	4
+6	5
+8	7
 \.
 
 
@@ -700,35 +697,35 @@ SELECT pg_catalog.setval('public.agenda_labs_chave_id_agenda_seq', 21, true);
 -- Name: equipamentos_id_equipamento_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.equipamentos_id_equipamento_seq', 16, true);
+SELECT pg_catalog.setval('public.equipamentos_id_equipamento_seq', 17, true);
 
 
 --
 -- Name: laboratorio_id_laboratorio_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.laboratorio_id_laboratorio_seq', 20, true);
+SELECT pg_catalog.setval('public.laboratorio_id_laboratorio_seq', 21, true);
 
 
 --
 -- Name: solicitacao_id_solicitacao_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.solicitacao_id_solicitacao_seq', 19, true);
+SELECT pg_catalog.setval('public.solicitacao_id_solicitacao_seq', 20, true);
 
 
 --
 -- Name: turma_id_turma_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.turma_id_turma_seq', 20, true);
+SELECT pg_catalog.setval('public.turma_id_turma_seq', 21, true);
 
 
 --
 -- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 21, true);
+SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 24, true);
 
 
 --
@@ -840,7 +837,7 @@ ALTER TABLE ONLY public.usuario
 --
 
 ALTER TABLE ONLY public.utiliza
-    ADD CONSTRAINT utiliza_pkey PRIMARY KEY (id_turma, id_equipamento, id_laboratorio);
+    ADD CONSTRAINT utiliza_pkey PRIMARY KEY (id_turma, id_laboratorio);
 
 
 --
@@ -976,14 +973,6 @@ ALTER TABLE ONLY public.tecnico_ti
 
 
 --
--- Name: utiliza fk_utiliza_equipamento; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.utiliza
-    ADD CONSTRAINT fk_utiliza_equipamento FOREIGN KEY (id_equipamento) REFERENCES public.equipamentos(id_equipamento);
-
-
---
 -- Name: utiliza fk_utiliza_laboratorio; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1003,5 +992,5 @@ ALTER TABLE ONLY public.utiliza
 -- PostgreSQL database dump complete
 --
 
-\unrestrict kblvnDLqLKovr0Ws0EgRuCIzSEOE0kz3qFbEcVKSwMhVEe1WirkNPmfESYbJeFC
+\unrestrict KiUClESNLQzFn3jafie6xsbZlpurbIAPE9asMtxhNQh0rhoIU73YcNksm9v8fUV
 
