@@ -13,10 +13,10 @@ if ($_SESSION['tipo_usuario'] == 'tecnico') {
     die("Acesso negado. Técnico não abre chamado, apenas atende chamados atribuídos.");
 }
 
-$equipamentos = $pdo->query("SELECT id_equipamento, patrimonio, nome FROM equipamentos ORDER BY nome")
+$equipamentos = db_execute($pdo, "SELECT id_equipamento, patrimonio, nome FROM equipamentos ORDER BY nome")
                    ->fetchAll(PDO::FETCH_ASSOC);
 
-$tecnicos = $pdo->query("
+$tecnicos = db_execute($pdo, "
     SELECT t.cpf, u.nome
     FROM tecnico_ti t
     INNER JOIN usuario u ON t.id_usuario = u.id_usuario
@@ -43,7 +43,7 @@ $tecnicos = $pdo->query("
         <select name="id_equipamento" required>
             <option value="">Selecione</option>
             <?php foreach ($equipamentos as $equip): ?>
-                <option value="<?= $equip['id_equipamento'] ?>">
+                <option value="<?= htmlspecialchars($equip['id_equipamento']) ?>">
                     <?= htmlspecialchars($equip['patrimonio'] . " - " . $equip['nome']) ?>
                 </option>
             <?php endforeach; ?>
@@ -53,7 +53,7 @@ $tecnicos = $pdo->query("
         <select name="cpf_tecnico_responsavel" required>
             <option value="">Selecione</option>
             <?php foreach ($tecnicos as $tec): ?>
-                <option value="<?= $tec['cpf'] ?>">
+                <option value="<?= htmlspecialchars($tec['cpf']) ?>">
                     <?= htmlspecialchars($tec['nome']) ?>
                 </option>
             <?php endforeach; ?>

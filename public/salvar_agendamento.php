@@ -50,8 +50,7 @@ $sqlSiape = "
     WHERE id_usuario = :id_usuario
 ";
 
-$stmtSiape = $pdo->prepare($sqlSiape);
-$stmtSiape->execute([
+$stmtSiape = db_execute($pdo, $sqlSiape, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -76,8 +75,7 @@ $sqlConflito = "
     LIMIT 1
 ";
 
-$stmtConflito = $pdo->prepare($sqlConflito);
-$stmtConflito->execute([
+$stmtConflito = db_execute($pdo, $sqlConflito, [
     ':id_laboratorio' => $id_laboratorio,
     ':data_retirada' => $data_retirada,
     ':hora_retirada' => $hora_retirada
@@ -111,9 +109,7 @@ $sql = "
     )
 ";
 
-$stmt = $pdo->prepare($sql);
-
-$stmt->execute([
+db_execute($pdo, $sql, [
     ':data_retirada' => $data_retirada,
     ':hora_retirada' => $hora_retirada,
     ':siape_professor' => $siape,

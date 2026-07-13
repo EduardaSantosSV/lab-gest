@@ -18,8 +18,7 @@ $sqlCpf = "
     WHERE id_usuario = :id_usuario
 ";
 
-$stmtCpf = $pdo->prepare($sqlCpf);
-$stmtCpf->execute([
+$stmtCpf = db_execute($pdo, $sqlCpf, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -54,8 +53,7 @@ $sql = "
     ORDER BY s.id_solicitacao DESC
 ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
+$stmt = db_execute($pdo, $sql, [
     ':cpf' => $cpf
 ]);
 
@@ -109,12 +107,13 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td>
                             <form action="atualizar_status.php" method="POST">
                                 <?= csrf_input() ?>
-                                <input type="hidden" name="id_solicitacao" value="<?= $chamado['id_solicitacao'] ?>">
+                                <input type="hidden" name="id_solicitacao" value="<?= htmlspecialchars($chamado['id_solicitacao']) ?>">
 
                                 <select name="status" required>
                                     <option value="aberto" <?= $chamado['status'] == 'aberto' ? 'selected' : '' ?>>Aberto</option>
                                     <option value="em atendimento" <?= $chamado['status'] == 'em atendimento' ? 'selected' : '' ?>>Em atendimento</option>
                                     <option value="concluido" <?= $chamado['status'] == 'concluido' ? 'selected' : '' ?>>Concluído</option>
+                                    <option value="cancelado" <?= $chamado['status'] == 'cancelado' ? 'selected' : '' ?>>Cancelado</option>
                                 </select>
 
                                 <button type="submit">Salvar</button>

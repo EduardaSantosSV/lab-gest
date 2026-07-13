@@ -10,6 +10,12 @@ if (!isset($_SESSION['id_usuario'])) {
 
 csrf_verificar();
 
+$tipos_permitidos = ['hardware', 'rede', 'periferico', 'software'];
+
+if (!in_array($_POST['tipo_solicitacao'] ?? '', $tipos_permitidos, true)) {
+    die("Tipo de solicitação inválido.");
+}
+
 $sql = "INSERT INTO solicitacao (
             descricao,
             tipo_solicitacao,
@@ -26,9 +32,7 @@ $sql = "INSERT INTO solicitacao (
             :id_equipamento
         )";
 
-$stmt = $pdo->prepare($sql);
-
-$stmt->execute([
+db_execute($pdo, $sql, [
     ':descricao' => $_POST['descricao'],
     ':tipo_solicitacao' => $_POST['tipo_solicitacao'],
     ':id_usuario_solicitante' => $_SESSION['id_usuario'],

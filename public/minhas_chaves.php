@@ -26,8 +26,7 @@ $sqlSiape = "
     WHERE id_usuario = :id_usuario
 ";
 
-$stmtSiape = $pdo->prepare($sqlSiape);
-$stmtSiape->execute([
+$stmtSiape = db_execute($pdo, $sqlSiape, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -61,8 +60,7 @@ $sql = "
     ORDER BY a.id_agenda DESC
 ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
+$stmt = db_execute($pdo, $sql, [
     ':siape' => $siape
 ]);
 

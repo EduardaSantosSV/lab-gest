@@ -17,7 +17,7 @@ csrf_verificar();
 $id_solicitacao = $_POST['id_solicitacao'] ?? null;
 $status = $_POST['status'] ?? null;
 
-$status_permitidos = ['aberto', 'em atendimento', 'concluido'];
+$status_permitidos = ['aberto', 'em atendimento', 'concluido', 'cancelado'];
 
 if (!$id_solicitacao || !in_array($status, $status_permitidos)) {
     die("Dados inválidos.");
@@ -32,8 +32,7 @@ $sqlCpf = "
     WHERE id_usuario = :id_usuario
 ";
 
-$stmtCpf = $pdo->prepare($sqlCpf);
-$stmtCpf->execute([
+$stmtCpf = db_execute($pdo, $sqlCpf, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -55,8 +54,7 @@ $sql = "
       AND cpf_tecnico_responsavel = :cpf
 ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
+db_execute($pdo, $sql, [
     ':status' => $status,
     ':id_solicitacao' => $id_solicitacao,
     ':cpf' => $cpf

@@ -18,8 +18,7 @@ $sqlProfessor = "
     WHERE id_usuario = :id_usuario
 ";
 
-$stmtProfessor = $pdo->prepare($sqlProfessor);
-$stmtProfessor->execute([
+$stmtProfessor = db_execute($pdo, $sqlProfessor, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -35,7 +34,7 @@ $sqlLabs = "
     ORDER BY id_laboratorio
 ";
 
-$stmtLabs = $pdo->query($sqlLabs);
+$stmtLabs = db_execute($pdo, $sqlLabs);
 $laboratorios = $stmtLabs->fetchAll(PDO::FETCH_ASSOC);
 
 $horarios = [

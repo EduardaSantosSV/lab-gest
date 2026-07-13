@@ -32,8 +32,7 @@ $sql = "
     ORDER BY s.id_solicitacao DESC
 ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
+$stmt = db_execute($pdo, $sql, [
     ':id_usuario' => $_SESSION['id_usuario']
 ]);
 
@@ -83,7 +82,7 @@ $chamados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                   class="form-remover"
                                   onsubmit="return confirm('Deseja apagar este chamado?')">
                                 <?= csrf_input() ?>
-                                <input type="hidden" name="id" value="<?= $chamado['id_solicitacao'] ?>">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($chamado['id_solicitacao']) ?>">
                                 <button type="submit" class="btn-remover">Apagar</button>
                             </form>
                         <?php else: ?>

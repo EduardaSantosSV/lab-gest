@@ -10,8 +10,7 @@ $senha = $_POST['senha'];
 
 $sql = "SELECT * FROM usuario WHERE email = :email";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
+$stmt = db_execute($pdo, $sql, [
     ':email' => $email
 ]);
 
