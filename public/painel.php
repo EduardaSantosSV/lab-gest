@@ -58,6 +58,37 @@ $tipo = $_SESSION['tipo_usuario'];
 
     </div>
 
+    <?php if ($tipo == 'tecnico'): ?>
+        <h2 class="section-title">Cadastros</h2>
+
+        <div class="cards">
+            <a href="cadastrar_laboratorio.php" class="card">
+                <h3>Laboratório</h3>
+                <p>Cadastrar novo laboratório.</p>
+            </a>
+
+            <a href="cadastrar_equipamento.php" class="card">
+                <h3>Equipamento</h3>
+                <p>Cadastrar equipamento e associar a um laboratório.</p>
+            </a>
+
+            <a href="cadastrar_turma.php" class="card">
+                <h3>Turma</h3>
+                <p>Cadastrar nova turma.</p>
+            </a>
+
+            <a href="cadastrar_usuario.php" class="card">
+                <h3>Usuário</h3>
+                <p>Cadastrar aluno, professor ou técnico.</p>
+            </a>
+
+            <a href="associar_turma.php" class="card">
+                <h3>Associar aluno à turma</h3>
+                <p>Vincular um aluno a uma turma existente.</p>
+            </a>
+        </div>
+    <?php endif; ?>
+
     <a href="logout.php" class="logout">Sair</a>
 
 </div>
